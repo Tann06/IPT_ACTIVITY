@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator and Resizable Image</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 45%;
+        }
+
+        .calculator input {
+            width: 100%;
+            padding: 10px;
+            font-size: 2rem;
+            text-align: right;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+
+        .calculator button {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .calculator button:hover {
+            background-color: #45a049;
+        }
+
+        .image-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 45%;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            max-width: 400px;
+            transition: all 0.3s ease;
+        }
+
+        .resize-buttons {
+            margin-top: 10px;
+        }
+
+        .resize-buttons button {
+            width: 50px;
+            height: 50px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .resize-buttons button:hover {
+            background-color: #0b7dda;
+        }
+    </style>
+</head>
+<body>
+    <nav class="panel">
+        <a href="index.html">Main Page</a>
+        <a href="Resume.html">My Resume</a>
+        <a href="My Works.html">My Projects</a>
+        <a href="Biodata.html">Biodata</a>
+        <a href="calcupic.html">JavaScript</a>
+        <a href="homepage.html">Skeleton HTML</a>
+        <a href="homepagecss.html">Homapage</a>
+    </nav>
+    <div class="container">
+        <div class="calculator">
+            <input id="display" type="text" disabled>
+            <div>
+                <button onclick="appendNumber('7')">7</button>
+                <button onclick="appendNumber('8')">8</button>
+                <button onclick="appendNumber('9')">9</button>
+                <button onclick="appendOperator('+')">+</button>
+            </div>
+            <div>
+                <button onclick="appendNumber('4')">4</button>
+                <button onclick="appendNumber('5')">5</button>
+                <button onclick="appendNumber('6')">6</button>
+                <button onclick="appendOperator('-')">-</button>
+            </div>
+            <div>
+                <button onclick="appendNumber('1')">1</button>
+                <button onclick="appendNumber('2')">2</button>
+                <button onclick="appendNumber('3')">3</button>
+                <button onclick="appendOperator('*')">*</button>
+            </div>
+            <div>
+                <button onclick="appendNumber('0')">0</button>
+                <button onclick="clearDisplay()">C</button>
+                <button onclick="calculate()">=</button>
+                <button onclick="appendOperator('/')">/</button>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img id="image" src="https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/16620/production/_91408619_55df76d5-2245-41c1-8031-07a4da3f313f.jpg" alt="Placeholder Image">
+            <div class="resize-buttons">
+                <button onclick="resizeImage(10)">+</button>
+                <button onclick="resizeImage(-10)">-</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let imageWidth = 400; 
+
+        function appendNumber(number) {
+            document.getElementById('display').value += number;
+        }
+
+        function appendOperator(operator) {
+            document.getElementById('display').value += operator;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+
+        function resizeImage(amount) {
+            const image = document.getElementById('image');
+            imageWidth += amount;
+
+            if (imageWidth >= 50 && imageWidth <= 800) { 
+                image.style.width = imageWidth + 'px';
+            }
+        }
+    </script>
+
+</body>
+</html>
